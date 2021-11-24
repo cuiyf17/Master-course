@@ -1,0 +1,109 @@
+Variable.Name,Unit.of.Measure,Data.Type,Description
+age,Years,numeric,The age of the patient on unit admission
+bmi,kilograms/metres^2,numeric,The body mass index of the person on unit admission
+elective_surgery,None,binary,Whether the patient was admitted to the hospital for an elective surgical operation
+height,centimetres,numeric,The height of the person on unit admission
+pre_icu_los_days,Days,numeric,The length of stay of the patient between hospital admission and unit admission
+weight,kilograms,numeric,The weight (body mass) of the person on unit admission
+apache_2_diagnosis,None,numeric,The APACHE II diagnosis for the ICU admission
+apache_3j_diagnosis,None,numeric,The APACHE III-J sub-diagnosis code which best describes the reason for the ICU admission
+arf_apache,None,binary,"Whether the patient had acute renal failure during the first 24 hours of their unit stay,  defined as a 24 hour urine output <410ml, creatinine >=133 micromol/L and no chronic dialysis"
+bun_apache,mmol/L,numeric,The blood urea nitrogen concentration measured during the first 24 hours which results in the highest APACHE III score
+creatinine_apache,micromol/L,numeric,The creatinine concentration measured during the first 24 hours which results in the highest APACHE III score
+gcs_eyes_apache,None,integer,The eye opening component of the Glasgow Coma Scale measured during the first 24 hours which results in the highest APACHE III score
+gcs_motor_apache,None,integer,The motor component of the Glasgow Coma Scale measured during the first 24 hours which results in the highest APACHE III score
+gcs_verbal_apache,None,integer,The verbal component of the Glasgow Coma Scale measured during the first 24 hours which results in the highest APACHE III score
+glucose_apache,mmol/L,numeric,The glucose concentration measured during the first 24 hours which results in the highest APACHE III score
+heart_rate_apache,Beats per minute,numeric,The heart rate measured during the first 24 hours which results in the highest APACHE III score
+hematocrit_apache,Fraction,numeric,The hematocrit measured during the first 24 hours which results in the highest APACHE III score
+intubated_apache,None,binary,Whether the patient was intubated at the time of the highest scoring arterial blood gas used in the oxygenation score
+map_apache,Millimetres of mercury,numeric,The mean arterial pressure measured during the first 24 hours which results in the highest APACHE III score
+resprate_apache,Breaths per minute,numeric,The respiratory rate measured during the first 24 hours which results in the highest APACHE III score
+sodium_apache,mmol/L,numeric,The sodium concentration measured during the first 24 hours which results in the highest APACHE III score
+temp_apache,Degrees Celsius,numeric,The temperature measured during the first 24 hours which results in the highest APACHE III score
+ventilated_apache,None,binary,"Whether the patient was invasively ventilated at the time of the highest scoring arterial blood gas using the oxygenation scoring algorithm, including any mode of positive pressure ventilation delivered through a circuit attached to an endo-tracheal tube or tracheostomy"
+wbc_apache,10^9/L,numeric,The white blood cell count measured during the first 24 hours which results in the highest APACHE III score
+d1_diasbp_max,Millimetres of mercury,numeric,"The patient's highest diastolic blood pressure during the first 24 hours of their unit stay,  either non-invasively or invasively measured"
+d1_diasbp_min,Millimetres of mercury,numeric,"The patient's lowest diastolic blood pressure during the first 24 hours of their unit stay,  either non-invasively or invasively measured"
+d1_heartrate_max,Beats per minute,numeric,The patient's highest heart rate during the first 24 hours of their unit stay
+d1_heartrate_min,Beats per minute,numeric,The patient's lowest heart rate during the first 24 hours of their unit stay
+d1_mbp_max,Millimetres of mercury,numeric,"The patient's highest mean blood pressure during the first 24 hours of their unit stay, either non-invasively or invasively measured"
+d1_mbp_min,Millimetres of mercury,numeric,"The patient's lowest mean blood pressure during the first 24 hours of their unit stay, either non-invasively or invasively measured"
+d1_resprate_max,Breaths per minute,numeric,The patient's highest respiratory rate during the first 24 hours of their unit stay
+d1_resprate_min,Breaths per minute,numeric,The patient's lowest respiratory rate during the first 24 hours of their unit stay
+d1_spo2_max,Percentage,numeric,The patient's highest peripheral oxygen saturation during the first 24 hours of their unit stay
+d1_spo2_min,Percentage,numeric,The patient's lowest peripheral oxygen saturation during the first 24 hours of their unit stay
+d1_sysbp_max,Millimetres of mercury,numeric,"The patient's highest systolic blood pressure during the first 24 hours of their unit stay, either non-invasively or invasively measured"
+d1_sysbp_min,Millimetres of mercury,numeric,"The patient's lowest systolic blood pressure during the first 24 hours of their unit stay, either non-invasively or invasively measured"
+d1_temp_max,Degrees Celsius,numeric,"The patient's highest core temperature during the first 24 hours of their unit stay, invasively measured"
+d1_temp_min,Degrees Celsius,numeric,The patient's lowest core temperature during the first 24 hours of their unit stay
+h1_diasbp_max,Millimetres of mercury,numeric,"The patient's highest diastolic blood pressure during the first hour of their unit stay, either non-invasively or invasively measured"
+h1_diasbp_min,Millimetres of mercury,numeric,"The patient's lowest diastolic blood pressure during the first hour of their unit stay, either non-invasively or invasively measured"
+h1_heartrate_max,Beats per minute,numeric,The patient's highest heart rate during the first hour of their unit stay
+h1_heartrate_min,Beats per minute,numeric,The patient's lowest heart rate during the first hour of their unit stay
+h1_mbp_max,Millimetres of mercury,numeric,"The patient's highest mean blood pressure during the first hour of their unit stay, either non-invasively or invasively measured"
+h1_mbp_min,Millimetres of mercury,numeric,"The patient's lowest mean blood pressure during the first hour of their unit stay, either non-invasively or invasively measured"
+h1_resprate_max,Breaths per minute,numeric,The patient's highest respiratory rate during the first hour of their unit stay
+h1_resprate_min,Breaths per minute,numeric,The patient's lowest respiratory rate during the first hour of their unit stay
+h1_spo2_max,Percentage,numeric,The patient's highest peripheral oxygen saturation during the first hour of their unit stay
+h1_spo2_min,Percentage,numeric,The patient's lowest peripheral oxygen saturation during the first hour of their unit stay
+h1_sysbp_max,Millimetres of mercury,numeric,"The patient's highest systolic blood pressure during the first hour of their unit stay, either non-invasively or invasively measured"
+h1_sysbp_min,Millimetres of mercury,numeric,"The patient's lowest systolic blood pressure during the first hour of their unit stay, either non-invasively or invasively measured"
+h1_temp_max,Degrees Celsius,numeric,"The patient's highest core temperature during the first hour of their unit stay, invasively measured"
+h1_temp_min,Degrees Celsius,numeric,The patient's lowest core temperature during the first hour of their unit stay
+d1_calcium_max,mmol/L,numeric,The highest calcium concentration of the patient in their serum during the first 24 hours of their unit stay
+d1_calcium_min,mmol/L,numeric,The lowest calcium concentration of the patient in their serum during the first 24 hours of their unit stay
+d1_glucose_min,mmol/L,numeric,The lowest glucose concentration of the patient in their serum or plasma during the first 24 hours of their unit stay
+d1_hco3_max,mmol/L,numeric,The highest bicarbonate concentration for the patient in their serum or plasma during the first 24 hours of their unit stay
+d1_hco3_min,None,numeric,The lowest bicarbonate concentration for the patient in their serum or plasma during the first 24 hours of their unit stay
+d1_hemaglobin_max,g/dL,numeric,The highest hemoglobin concentration for the patient during the first 24 hours of their unit stay
+d1_platelets_max,10^9/L,numeric,The highest platelet count for the patient during the first 24 hours of their unit stay
+d1_potassium_max,mmol/L,numeric,The highest potassium concentration for the patient in their serum or plasma during the first 24 hours of their unit stay
+d1_potassium_min,mmol/L,numeric,The lowest potassium concentration for the patient in their serum or plasma during the first 24 hours of their unit stay
+d1_sodium_max,mmol/L,numeric,The highest sodium concentration for the patient in their serum or plasma during the first 24 hours of their unit stay
+apache_4a_icu_death_prob,None,numeric,"The APACHE IVa probabilistic prediction of in ICU mortality for the patient which utilizes the APACHE III score and other covariates, including diagnosis"
+aids,None,binary,Whether the patient has a definitive diagnosis of acquired immune deficiency syndrome (AIDS) (not HIV positive alone)
+cirrhosis,None,binary,"Whether the patient has a history of heavy alcohol use with portal hypertension and varices, other causes of cirrhosis with evidence of portal hypertension and varices, or biopsy proven cirrhosis. This comorbidity does not apply to patients with a functioning liver transplant."
+diabetes_mellitus,None,binary,"Whether the patient has been diagnosed with diabetes, either juvenile or adult onset, which requires medication."
+hepatic_failure,None,binary,"Whether the patient has cirrhosis and additional complications including jaundice and ascites, upper GI bleeding, hepatic encephalopathy, or coma."
+immunosuppression,None,binary,"Whether the patient has their immune system suppressed within six months prior to ICU admission for any of the following reasons; radiation therapy, chemotherapy, use of non-cytotoxic immunosuppressive drugs, high dose steroids (at least 0.3 mg/kg/day of methylprednisolone or equivalent for at least 6 months)."
+leukemia,None,binary,"Whether the patient has been diagnosed with acute or chronic myelogenous leukemia, acute or chronic lymphocytic leukemia, or multiple myeloma."
+lymphoma,None,binary,Whether the patient has been diagnosed with non-Hodgkin lymphoma.
+solid_tumor_with_metastasis,None,binary,Whether the patient has been diagnosed with any solid tumor carcinoma (including malignant melanoma) which has evidence of metastasis.
+ethnicity_African.American,None,binary,Whether the person belongs to this national or cultural tradition
+ethnicity_Asian,None,binary,Whether the person belongs to this national or cultural tradition
+ethnicity_Caucasian,None,binary,Whether the person belongs to this national or cultural tradition
+ethnicity_Hispanic,None,binary,Whether the person belongs to this national or cultural tradition
+ethnicity_Native.American,None,binary,Whether the person belongs to this national or cultural tradition
+ethnicity_Other.Unknown,None,binary,Whether the person belongs to this national or cultural tradition
+gender_F,None,binary,Whether the person belongs to this genotypical sex
+gender_M,None,binary,Whether the person belongs to this genotypical sex
+icu_type_CCU.CTICU,None,binary,Whether the unit is capable of providing the person with this type of care 
+icu_type_CSICU,None,binary,Whether the unit is capable of providing the person with this type of care 
+icu_type_CTICU,None,binary,Whether the unit is capable of providing the person with this type of care 
+icu_type_Cardiac.ICU,None,binary,Whether the unit is capable of providing the person with this type of care 
+icu_type_MICU,None,binary,Whether the unit is capable of providing the person with this type of care 
+icu_type_Med.Surg.ICU,None,binary,Whether the unit is capable of providing the person with this type of care 
+icu_type_Neuro.ICU,None,binary,Whether the unit is capable of providing the person with this type of care 
+icu_type_SICU,None,binary,Whether the unit is capable of providing the person with this type of care 
+apache_3j_bodysystem_Cardiovascular,None,binary,Whether the person belongs to this admission diagnosis group according to APACHE III
+apache_3j_bodysystem_Gastrointestinal,None,binary,Whether the person belongs to this admission diagnosis group according to APACHE III
+apache_3j_bodysystem_Genitourinary,None,binary,Whether the person belongs to this admission diagnosis group according to APACHE III
+apache_3j_bodysystem_Gynecological,None,binary,Whether the person belongs to this admission diagnosis group according to APACHE III
+apache_3j_bodysystem_Hematological,None,binary,Whether the person belongs to this admission diagnosis group according to APACHE III
+apache_3j_bodysystem_Metabolic,None,binary,Whether the person belongs to this admission diagnosis group according to APACHE III
+apache_3j_bodysystem_Musculoskeletal.Skin,None,binary,Whether the person belongs to this admission diagnosis group according to APACHE III
+apache_3j_bodysystem_Neurological,None,binary,Whether the person belongs to this admission diagnosis group according to APACHE III
+apache_3j_bodysystem_Respiratory,None,binary,Whether the person belongs to this admission diagnosis group according to APACHE III
+apache_3j_bodysystem_Sepsis,None,binary,Whether the person belongs to this admission diagnosis group according to APACHE III
+apache_3j_bodysystem_Trauma,None,binary,Whether the person belongs to this admission diagnosis group according to APACHE III
+apache_2_bodysystem_Cardiovascular,None,binary,Whether the person belongs to this admission diagnosis group according to APACHE II
+apache_2_bodysystem_Gastrointestinal,None,binary,Whether the person belongs to this admission diagnosis group according to APACHE II
+apache_2_bodysystem_Haematologic,None,binary,Whether the person belongs to this admission diagnosis group according to APACHE II
+apache_2_bodysystem_Metabolic,None,binary,Whether the person belongs to this admission diagnosis group according to APACHE II
+apache_2_bodysystem_Neurologic,None,binary,Whether the person belongs to this admission diagnosis group according to APACHE II
+apache_2_bodysystem_Renal.Genitourinary,None,binary,Whether the person belongs to this admission diagnosis group according to APACHE II
+apache_2_bodysystem_Respiratory,None,binary,Whether the person belongs to this admission diagnosis group according to APACHE II
+apache_2_bodysystem_Trauma,None,binary,Whether the person belongs to this admission diagnosis group according to APACHE II
+apache_2_bodysystem_Undefined.Diagnoses,None,binary,Whether the person belongs to this admission diagnosis group according to APACHE II
+apache_2_bodysystem_Undefined.diagnoses,None,binary,Whether the person belongs to this admission diagnosis group according to APACHE II
