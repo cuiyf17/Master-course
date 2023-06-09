@@ -1,0 +1,1 @@
+这里存放bowtie2的reference
