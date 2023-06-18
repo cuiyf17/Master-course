@@ -1,0 +1,76 @@
+Weekly Corn Price: You can try modeling the corn prices.
+
+corn2013-2017/corn2015-2017: records weekly corn price in the given period.
+
+corn_OHLC2013-2017: the columns represent Date, Open Price, High Price, Low Price, Close Price
+
+=========================================
+
+Melbourn Housing Market: Can you predict the house price?
+
+Features description:
+
+Rooms: Number of rooms
+Price: Price in Australian dollars
+
+Method:
+S - property sold;
+SP - property sold prior;
+PI - property passed in;
+PN - sold prior not disclosed;
+SN - sold not disclosed;
+NB - no bid;
+VB - vendor bid;
+W - withdrawn prior to auction;
+SA - sold after auction;
+SS - sold after auction price not disclosed.
+N/A - price or highest bid not available.
+
+Type:
+br - bedroom(s);
+h - house,cottage,villa, semi,terrace;
+u - unit, duplex;
+t - townhouse;
+dev site - development site;
+o res - other residential.
+
+SellerG: Real Estate Agent
+Date: Date sold
+Distance: Distance from CBD in Kilometres
+Regionname: General Region (West, North West, North, North east …etc)
+Propertycount: Number of properties that exist in the suburb.
+Bedroom2 : Scraped # of Bedrooms (from different source)
+Bathroom: Number of Bathrooms
+Car: Number of carspots
+Landsize: Land Size in Metres
+BuildingArea: Building Size in Metres
+YearBuilt: Year the house was built
+CouncilArea: Governing council for the area
+
+====================================
+Fishing (fish2.dta): You can try modeling the number of fish caught
+
+boat: if owns a boat
+camper: if camping
+persons: number of persons accompany
+child: number of children accompany
+
+=====================================
+Visiting doctor (gsem.dta): Modeling the number of doctor visits. Does it seems to exist subgroups with different patterns?
+
+drvisits: number of doctor visits
+private: if has private supplementary insurance
+medicaid: if has Medicaid public insurance
+educ: years of education
+actlim: if has activity limitations
+chronic: number of chronic conditions
+offer: if employer offers insurance
+hpvisits: number of visits to health professionals other than doctors
+phylim: if has physical limitation
+
+======================================
+Medical expenditures (mus03sub.dta): You can try modeling the medical expenditures. Does it seems to exist subgroups with different patterns?
+
+sex: femal - 1; male - 0
+totchr: number of chronic problems
+lmedexp: Log of medical expenditures
