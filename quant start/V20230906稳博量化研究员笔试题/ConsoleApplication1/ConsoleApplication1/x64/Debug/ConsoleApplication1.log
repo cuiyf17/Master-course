@@ -1,6 +1,0 @@
-﻿  ConsoleApplication1.cpp
-D:\硕士课程\quant start\V20230906稳博量化研究员笔试题\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(12,5): error C2065: “vector”: 未声明的标识符
-D:\硕士课程\quant start\V20230906稳博量化研究员笔试题\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(12,12): error C2065: “vector”: 未声明的标识符
-D:\硕士课程\quant start\V20230906稳博量化研究员笔试题\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(12,19): error C2062: 意外的类型“int”
-D:\硕士课程\quant start\V20230906稳博量化研究员笔试题\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(10,5): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-D:\硕士课程\quant start\V20230906稳博量化研究员笔试题\ConsoleApplication1\ConsoleApplication1\ConsoleApplication1.cpp(16,9): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
