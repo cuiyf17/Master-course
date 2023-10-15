@@ -1,0 +1,180 @@
+# ==================== 以下是程序代码 ====================
+
+import numpy as np
+class MovingAverage:
+    def __init__(self, num_bin: int, window: float, precision="32bit"):
+        self.intpre = np.uint8
+        if(precision == "16bit"):
+            self.precision = 16
+            self.floatpre = np.float16
+        elif(precision == "32bit"):
+            self.precision = 32
+            self.floatpre = np.float32
+        elif(precision == "64bit"):
+            self.precision = 64
+            self.floatpre = np.float64
+        elif(precision == "128bit"):
+            self.precision = 128
+            self.floatpre = np.float128
+        else:
+            self.precision = 64
+            self.floatpre = np.float64
+        self.queue = []
+        self.max_len = num_bin*64//self.precision
+        self.window = window
+
+    def check(self, timestamp: float):
+        # 检查是否有过期数据，有则删除
+        tmp_time_stamp = self.floatpre(timestamp)
+        del_idx = -1
+        M = len(self.queue)
+        for i in range(M):
+            time = self.queue[i][0]
+            if(time < tmp_time_stamp - self.window):
+                del_idx = i
+            else:
+                break
+        self.queue = self.queue[del_idx+1:]
+    def merge(self):
+        # 合并时间上最相邻的两个数据
+        if(len(self.queue) == self.max_len):
+            min_time_delta = 0x7fffffff
+            M = len(self.queue)
+            idx = -1
+            for i in range(M - 1):
+                time_delta = self.queue[i + 1][0] - self.queue[i][0]
+                if(time_delta < min_time_delta):
+                    min_time_delta = time_delta
+                    idx = i
+            fake_weight = (self.queue[idx][2] + self.queue[idx + 1][2])
+            fake_time = (self.queue[idx][0]*self.queue[idx][2] + self.queue[idx + 1][0]*self.queue[idx + 1][2])/fake_weight
+            fake_value = (self.queue[idx][1]*self.queue[idx][2] + self.queue[idx + 1][1]*self.queue[idx + 1][2])/fake_weight
+            self.queue[idx] = (fake_time, fake_value, fake_weight)
+            self.queue.pop(idx + 1)
+
+    def Get(self) -> float:
+        # 返回当前计算的平均值
+        M = len(self.queue)
+        sma = 0
+        weight = 0
+        for i in range(M):
+            sma += self.queue[i][1]*self.queue[i][2]
+            weight += self.queue[i][2]
+        return sma/weight
+        
+    def Update(self, timestamp: float, value: float):
+        # 新数据到达，更新状态
+        self.check(timestamp)
+        self.merge()
+        tmp_tuple = (self.floatpre(timestamp), self.floatpre(value), self.intpre(1)) # (时间戳，值，权重)
+        
+        self.queue.append(tmp_tuple)
+
+# ==================== 以下是测试程序精确度的代码 ====================
+
+# 生成模拟数据
+import numpy as np
+np.random.seed(1024)
+
+data_size = 1000
+times = np.random.chisquare(1, data_size)
+times = np.cumsum(times)
+values = np.random.normal(10, 1, data_size)
+
+# 测试程序精度
+def get_results(ma_robot, times, values, isprint=False):
+    correct_num = 0
+    mse = 0
+    for i in range(data_size):
+        sma = 0
+        for j in range(i, -1, -1):
+            if(times[i] - times[j] > W):
+                sma = np.mean(values[j + 1:i + 1])
+                break
+            if(j == 0):
+                sma = np.mean(values[:i + 1])
+        
+        ma_robot.Update(times[i], values[i])
+        cal_sma = ma_robot.Get()
+        mse += (sma - cal_sma)**2
+        if(isprint):
+            print("real_sma: %-20s cal_sma: %-20s"%(sma, cal_sma), end=" ")
+        if(abs(sma - cal_sma) < 1e-2): # 由于股票数据本身的精度就只有小数点后2位，因此只要计算结果误差小于0.01就算对
+            correct_num += 1
+            if(isprint):
+                print("correct!")
+        else:
+            if(isprint):
+                print("wrong!")
+    mse /= data_size
+    if(isprint):
+        print("correct rate = %-20s MSE = %-20s"%(correct_num/data_size, mse))
+
+    return correct_num/data_size, mse
+
+# 用float16存储的结果
+W = 5
+num_bin = 4
+ma_robot = MovingAverage(num_bin, W, precision="16bit")
+get_results(ma_robot, times, values, isprint=True)
+
+
+# 用float32存储的结果
+W = 5
+num_bin = 4
+ma_robot = MovingAverage(num_bin, W, precision="32bit")
+get_results(ma_robot, times, values, isprint=True)
+
+
+# 用float64存储的结果
+W = 5
+num_bin = 4
+ma_robot = MovingAverage(num_bin, W, precision="64bit")
+get_results(ma_robot, times, values, isprint=True)
+
+
+
+
+# 结果比较
+import matplotlib.pyplot as plt
+
+bits = ["16bit", "32bit", "64bit"]
+W = 7
+plt.figure(figsize=(8, 5))
+plt.title("Correct Rate Curve")
+for i, precision in enumerate(bits):
+    num_bins = np.arange(2, 10, 1)
+    correct_rates = []
+    mses = []
+    for num_bin in num_bins:
+        ma_robot = MovingAverage(num_bin, W, precision=precision)
+        correct_rate, mse = get_results(ma_robot, times, values)
+        correct_rates.append(correct_rate)
+        mses.append(mse)
+    plt.plot(num_bins, correct_rates, "-", label="precision = %s"%(precision))
+plt.xlabel("num_bins")
+plt.ylabel("correct_rate")
+plt.legend()
+plt.show()
+
+plt.figure(figsize=(8, 5))
+plt.title("MSE Curve")
+for i, precision in enumerate(bits):
+    num_bins = np.arange(2, 10, 1)
+    correct_rates = []
+    mses = []
+    for num_bin in num_bins:
+        ma_robot = MovingAverage(num_bin, W, precision=precision)
+        correct_rate, mse = get_results(ma_robot, times, values)
+        correct_rates.append(correct_rate)
+        mses.append(mse)
+    plt.plot(num_bins, mses, "-", label="precision = %s"%(precision))
+plt.xlabel("num_bins")
+plt.ylabel("MSE")
+plt.legend()
+plt.show()
+
+# 结论：
+# 可见，使用32-bit精度存储是最优的
+
+
