@@ -1,0 +1,4 @@
+cyfutils.py是我用的各种函数工具包，主要是查看回测结果的各种统计数据
+alphafilter2700.py是我的因子筛选脚本
+alphamerger2700是我的因子融合脚本
+fit2700_roll_parallel.py是我的模型训练脚本，依赖于cyfutils.py

@@ -1,0 +1,91 @@
+<Alphasim>
+<Constants backdays="900" niodatapath="/data/simucache" niomapprivate="true" refreshDays="2" checkpointDir="" checkpointDays="5"/>
+<!-- build universe -->
+<Universe startdate="20170101" enddate="20210329" secID="/data/raw/secID" holidaysfile="/data/raw/holidays"/>
+<Modules>
+  <!-- data -->
+  <Data id="ALL" module="UmgrAll"/>
+  <Data id="TOP3000" module="UmgrTopliquid" univsize="3000" volwindow="63" minprice="1." maxprice="10000."
+        minvol="0." mincap="0." minlive="30" postipo="240"/>
+  <Data id="TOP2500" module="UmgrTopliquid" univsize="2500" volwindow="63" minprice="1." maxprice="10000."
+        minvol="0." mincap="0." minlive="30" postipo="240"/>
+  <Data id="TOP2200" module="UmgrTopliquid" univsize="2200" volwindow="63" minprice="1." maxprice="10000."
+        minvol="0." mincap="0." minlive="30" postipo="240"/>
+  <Data id="TOP2000" module="UmgrTopliquid" univsize="2000" volwindow="63" minprice="1." maxprice="10000."
+        minvol="0." mincap="0." minlive="30" postipo="240"/>
+  <Data id="TOP1500" module="UmgrTopliquid" univsize="1500" volwindow="63" minprice="1." maxprice="10000."
+        minvol="0." mincap="0." minlive="30" postipo="240"/>
+  <Data id="TOP1000" module="UmgrTopliquid" univsize="1000" volwindow="63" minprice="1." maxprice="10000."
+        minvol="0." mincap="0." minlive="30" postipo="240"/>
+  <Data id="TOP500" module="UmgrTopliquid" univsize="500" volwindow="63" minprice="1." maxprice="10000."
+        minvol="0." mincap="0." minlive="30" postipo="240"/>
+  <Data id="ZZ500" module="UmgrIndex" dataPath="/data/raw/ZZ500"/>
+  <Data id="HS300" module="UmgrIndex" dataPath="/data/raw/HS300"/>
+  <Data id="Basedata" module="DmgrBasedata" rawpricePath="/data/raw/rawprice" industryPath="/data/raw/AShareIndustrySW" ST="/data/raw/AShareST"/>
+  <Data id="PriceLimit" module="DmgrPriceLimit" dataPath="/data/raw/pricelimit" niodatapath="/home/szeng/data/simucache" niomapprivate="false"/>
+  <Data id="adjfactor" module="DmgrAdjfactor" dataPath="/data/raw/adjfactor"/>
+  <Data id="adjprice" module="DmgrAdjprice"/>
+  <Data id="ipo" module="DmgrIPO" dataPath="/data/raw/secID"/>
+  <Data id="zz500Compo" module="DmgrIndexCompo" dataPath="/data/raw/ZZ500"/>
+  <Data id="hs300Compo" module="DmgrIndexCompo" dataPath="/data/raw/HS300"/>
+  <Data id="index" module="DmgrIndex" dataPath="/data/raw/AShareIndex"/>
+  <Data id="interval5m" module="DmgrInterval5m" dataPath="/data/raw/interval"/>
+
+  <Data id="returns" module="DmgrReturns" days="1"/>
+  <Data id="stdret20" module="DmgrStdret" days="20"/>
+  <Data id="stdret30" module="DmgrStdret" days="30"/>
+  <Data id="stdret40" module="DmgrStdret" days="40"/>
+  <Data id="adv5" module="DmgrAdv" ndays="5"/>
+  <Data id="adv10" module="DmgrAdv" ndays="10"/>
+  <Data id="adv20" module="DmgrAdv" ndays="20"/>
+  <Data id="family" module="DmgrFamily"/>
+
+  <Data id="Concept" module="DmgrConcept" dataPath="/data/raw/AShareConcept"/>
+  <Data id="xsg" module="DmgrXsg" dataPath="/data/raw/AShareXsg"/>
+  <Data id="MoneyFlow" module="DmgrWindMoneyFlow" dataPath="/data/raw/AShareMoneyFlow"/>
+  <Data id="RatingConsensus" module="DmgrWindRatingConsensus" dataPath='/data/raw/AShareStockRatingConsus'
+        lag="1" backfill="true" backfillDays="120" dailyStart="20190725" cutoffTime="18:00:00"/>
+  <Data id="ConsensusRolling_FY0" module="DmgrWindConsensusRolling"
+        dataPath='/data/raw/AShareConsensusRollingData' rollingType="FY0"/>
+  <Data id="ConsensusRolling_FY1" module="DmgrWindConsensusRolling"
+        dataPath='/data/raw/AShareConsensusRollingData' rollingType="FY1"/>
+  <Data id="ConsensusRolling_FY2" module="DmgrWindConsensusRolling"
+        dataPath='/data/raw/AShareConsensusRollingData' rollingType="FY2"/>
+  <Data id="WindIncome_Q" module="DmgrWindIncome" dataPath="/data/raw/AShareIncome" lag="0" reportType='Q'
+        dailyStart="20190717" cutoffTime="18:00:00"/>
+  <Data id="WindCashflow_Q" module="DmgrWindCashflow" dataPath="/data/raw/AShareCashFlow" lag="0" reportType='Q'
+        dailyStart="20190717" cutoffTime="18:00:00"/>
+  <Data id="WindBalancesheet_Q" module="DmgrWindBalancesheet" dataPath="/data/raw/AShareBalanceSheet" lag="0"
+        dailyStart="20190717" cutoffTime="18:00:00"/>
+  <Operation id="UniverseDeFinance" module="UniverseDeFinance.py"/>
+  <Operation id="OP_amount_adjust" module="OP_amount_adjust.py"/>
+</Modules>
+
+<Portfolio moduleId="Portfolio" id="MyPort" booksize="20e6" homecurrency="CNY">
+  <Stats module="StatsIndex" tradePrice="vwap" tax="10." fee="2.5" slippage="0." index="index.zz500" compo="zz500Compo.compo" indexSize="10e6" keepHalt="true" maxHaltDays="250" printStats="true" dumpPnl="true" pnlDir="pnl_combodeepv3_zz500_TOP2000_c1"/>
+  <!-- <Stats module="StatsSimple" tradePrice="close" tax="0." fee="0." slippage="0." printStats="true" dumpPnl="true" pnlDir="DL_ls_c0"/> -->
+  <Alphas id="combo" universeId="TOP2000" booksize="100." delay="1" combo="AlphaComboStatic" dumpWeightDir="combo_eq_select/weight" dumpAlphaDir="combo_eq_select/position" dumpAlphaFile="true" dumpAlphaCombo="true">
+     
+      <Alpha module="AlphaLoad" id="DL_ls_c0" universeId="TOP2000" booksize="20e6" delay="1" alphaDir="combo_eq_select/position" weight="1" ver="v2"/>
+      <!-- <Alpha module="AlphaLoad" id="hzhang.weighttv7r2.5_3k" universeId="TOP3000" booksize="20e6" delay="1" alphaDir="/mnt/nas-3/hzhang" weight="1" ver="v2"/> -->
+      <!-- <Alpha module="AlphaLoad" id="hzhang.combodeepv7" universeId="TOP2000" booksize="20e6" delay="1" alphaDir="/data/combo" weight="1" ver="v2"/> -->
+      <!-- <Alpha module="AlphaLoad" id="hzhang.combodeepv3_3k" universeId="TOP3000" booksize="20e6" delay="1" alphaDir="/mnt/nas-3/hzhang" weight="1" ver="v2"/> -->
+      <!-- <Alpha module="AlphaLoad" id="hzhang.combodeepv3" universeId="TOP3000" booksize="20e6" delay="1" alphaDir="/data/combo" weight="1" ver="v2"/> -->
+      <!-- <Alpha module="AlphaLoad" id="szeng.alphaInd48" universeId="TOP2000" booksize="20e6" delay="1" alphaDir="/data/alpha" weight="0.02" ver="v2"/> -->
+      <!-- <Alpha module="AlphaLoad" id="szeng_MOM101_ind" universeId="TOP2000" booksize="20e6" delay="1" alphaDir="/home/szeng/alphasim_ex/MOM_20210727/Alpha_MOM101/alpha" weight="0.02" ver="v2"/> -->
+      <Alpha module="AlphaLoad" id="szeng_MOM102_ind" universeId="TOP2000" booksize="20e6" delay="1" alphaDir="/home/szeng/alphasim_ex/MOM_20210727/Alpha_MOM102/alpha" weight="0.05" ver="v2"/>
+    <Operations>
+            <Operation module="AlphaOpIndNeut" group="country"/>
+            <!-- <Operation module="OP_amount_adjust"/> -->
+            <!-- <Operation module="AlphaOpIndNeut" group="country"/> -->
+            
+            <!-- <Operation module="AlphaOpWeightAdj" hold="900" buffer="1000" hump="0.5" advpow="0" bpcoeff="0" secdiff="10.2" liqcut="0.1" univ="TOP3000"/> -->
+            <!-- <Operation module="OP_amount_adjust"/> -->
+            <!-- <Operation module="AlphaOpIndNeut" group="country"/> -->
+            <Operation module="AlphaOpWeightAdj" hold="900" buffer="1000" hump="0.5" advpow="0.5" bpcoeff="0.8" secdiff="10.2" liqcut="0.1" univ="TOP2000"/>
+    </Operations>
+  </Alphas>
+</Portfolio>
+
+
+</Alphasim>

@@ -1,0 +1,64 @@
+<Alphasim>
+<Constants backdays="900" niodatapath="/data/simucache" niomapprivate="true" refreshDays="2" checkpointDir="" checkpointDays="5" authorWeight=""/>
+<Universe startdate="20100101" enddate="20211231" secID="/data/raw/secID" holidaysfile="/data/raw/holidays"/>
+<Modules>
+  <Data id="ALL" module="UmgrAll"/> 
+  <Data id="TOP3000" module="UmgrTopliquid" univsize="3000" volwindow="63" minprice="1." maxprice="10000." minvol="0." mincap="0." minlive="30" postipo="240"/>
+  <Data id="TOP2500" module="UmgrTopliquid" univsize="2500" volwindow="63" minprice="1." maxprice="10000." minvol="0." mincap="0." minlive="30" postipo="240"/>
+  <Data id="TOP2200" module="UmgrTopliquid" univsize="2200" volwindow="63" minprice="1." maxprice="10000." minvol="0." mincap="0." minlive="30" postipo="240"/>
+  <Data id="TOP2000" module="UmgrTopliquid" univsize="2000" volwindow="63" minprice="1." maxprice="10000." minvol="0." mincap="0." minlive="30" postipo="240"/>
+  <Data id="TOP1500" module="UmgrTopliquid" univsize="1500" volwindow="63" minprice="1." maxprice="10000." minvol="0." mincap="0." minlive="30" postipo="240"/>
+  <Data id="TOP1000" module="UmgrTopliquid" univsize="1000" volwindow="63" minprice="1." maxprice="10000." minvol="0." mincap="0." minlive="30" postipo="240"/>
+  <Data id="TOP500" module="UmgrTopliquid" univsize="500" volwindow="63" minprice="1." maxprice="10000." minvol="0." mincap="0." minlive="30" postipo="240"/>
+  <Data id="ZZ500" module="UmgrIndex" dataPath="/data/raw/ZZ500"/>
+  <Data id="HS300" module="UmgrIndex" dataPath="/data/raw/HS300"/>
+  <Data id="Basedata" module="DmgrBasedata" rawpricePath="/data/raw/rawprice" industryPath="/data/raw/AShareIndustrySW" ST="/data/raw/AShareST"/>
+  <Data id="PriceLimit" module="DmgrPriceLimit" dataPath="/data/raw/pricelimit"/>
+  <Data id="adjfactor" module="DmgrAdjfactor" dataPath="/data/raw/adjfactor"/>
+  <Data id="adjprice" module="DmgrAdjprice"/>
+  <Data id="ipo" module="DmgrIPO" dataPath="/data/raw/secID"/>
+  <Data id="zz500Compo" module="DmgrIndexCompo" dataPath="/data/raw/ZZ500"/>
+  <Data id="hs300Compo" module="DmgrIndexCompo" dataPath="/data/raw/HS300"/>
+  <Data id="index" module="DmgrIndex" dataPath="/data/raw/AShareIndex"/>
+  <Data id="returns" module="DmgrReturns" days="1"/>
+  <Data id="stdret20" module="DmgrStdret" days="20"/>
+  <Data id="stdret30" module="DmgrStdret" days="30"/>
+  <Data id="stdret40" module="DmgrStdret" days="40"/>
+  <Data id="adv5" module="DmgrAdv" ndays="5"/>
+  <Data id="adv10" module="DmgrAdv" ndays="10"/>
+  <Data id="adv20" module="DmgrAdv" ndays="20"/>
+  <Data id="family" module="DmgrFamily"/>
+
+  <Alpha id="AlphaCorrVolVol" module="/home/cuiyf/myalphasim/myalphas.bk/week5/AlphaCorrVolVol.py"/>
+
+  <Operation id="cuiyfDecay" module="/home/cuiyf/myalphasim/cuiyf_op/OP_decay.py"/>
+  <Operation id="cuiyftsEMA" module="/home/cuiyf/myalphasim/cuiyf_op/OP_tsEMA.py"/>
+  <Operation id="saveAlphaValue" module="/home/cuiyf/myalphasim/cuiyf_op/OP_save_alphavalue.py"/>
+  <Stats id="cuiyfStatsSimple" module="/home/cuiyf/myalphasim/cuiyf_op/cuiyfstats_simple.py"/>
+</Modules>
+
+<Portfolio id="MyPort" booksize="20e6" homecurrency="CNY">
+  <Stats module="cuiyfStatsSimple" tradePrice="vwap" tax="0." fee="0." slippage="0." printStats="true" dumpPnl="true" pnlDir="pnl" dump_group_pnl="true" group_pnlDir="group_pnl" groupname="alpha" num_groups="20"/>
+
+  <Alpha id="alpha.CorrVolVol" module="AlphaCorrVolVol" universeId="TOP3000" booksize="20e6" delay="1" dumpAlphaFile="true" dumpAlphaDir="alpha">
+  <Description name="alpha_CorrVolVol" author="cuiyf" birthday="20231013" category="price_volume" universe="TOP3000" delay="1"/>
+  <Operations>
+    <!--
+      <Operation module="AlphaOpPower" exp="2"/>
+      <Operation module="cuiyfDecay" days="10"/>
+      <Operation module="AlphaOpRank"/>
+    -->
+    <!-- <Operation module="cuiyftsEMA" days="3"/> -->
+    <!-- <Operation module="cuiyfDecay" days="3"/> -->
+    <Operation module="AlphaOpRank"/>
+    <Operation module="AlphaOpPower" exp="3"/>
+    <!-- <Operation module="cuiyfDecay" days="3"/> -->
+    <!-- <Operation module="AlphaOpIndNeut" group="subindustry"/> -->
+    <!-- <Operation module="AlphaOpTruncate" maxPercent="0.1"/> -->
+    <Operation module="AlphaOpIndNeut" group="country"/>
+    <Operation module="saveAlphaValue"/>
+  </Operations>
+  </Alpha>
+</Portfolio>
+
+</Alphasim>
